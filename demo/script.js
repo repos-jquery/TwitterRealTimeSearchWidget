@@ -1,9 +1,9 @@
 //var tweetUsers = ['tutorialzine','TechCrunch','smashingmag','mashable'];
-var tweetUsers = ['apple'];
+var tweetUsers = [];
 var buildString = "";
 var keyname = "";
 var lastID = 0;
-var tweetlist = new Array();
+var tweetlist = [];
 //var ob;
 
 $(document).ready(function(){
@@ -33,7 +33,7 @@ function GetMatchingStatuses(buildString)
 function FormatTweets(data)
 {
     //        alert("FormatTweets lastID"+lastID);
-    var newlist = new Array();
+    var newlist = [];
     var container=$('#tweet-container');
     $(data.results).sort(function(a,b){return(a.id - b.id);}).each(function(el){
         if (!lastID || this.id > lastID) {
