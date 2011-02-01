@@ -84,9 +84,11 @@ function formatTwitString(str) {
     str = str.replace(/((ftp|https?):\/\/([-\w\.]+)+(:\d+)?(\/([\w/_\.]*(\?\S+)?)?)?)/gm, '<a href="$1" target="_blank">$1</a>');
     str = str.replace(/([^\w])\@([\w\-]+)/gm, '$1@<a href="http://twitter.com/$2" target="_blank">$2</a>');
     str = str.replace(/([^\w])\#([\w\-]+)/gm, '$1<a href="http://twitter.com/search?q=%23$2" target="_blank">#$2</a>');
-    var match = new RegExp(last_key, "ig");     
-    str = str.replace(match,'<span class="highlight">'+last_key+'</span>');
-//    show("formatTwitString lastkey " + last_key + ' final str '+str, 'info-console');
+    if (last_key != '') {
+        var match = new RegExp(last_key, "ig");     
+        str = str.replace(match,'<span class="highlight">'+last_key+'</span>');
+//        show("formatTwitString lastkey " + last_key + ' final str '+str, 'info-console');
+    }
     return str;
 }
 
