@@ -47,9 +47,10 @@ function GetMatchingStatuses(buildString) {
 function FormatTweets(data) {
     var newlist = [];
     var container = $('#tweet-container');
-    $(data.results).sort(function(a, b) {
+    var dr = $(data.results).sort(function(a, b) {
         return (a.id - b.id);
-    }).each(function(el) {
+    });
+    dr.each(function(el) {
         if (!lastID || this.id > lastID) {
             lastID = this.id;
             var TimeForThisCall = this.created_at;
@@ -61,6 +62,12 @@ function FormatTweets(data) {
                 <div class="txt">' + formatTwitString(this.text) + '</div>\
                 </div>';
             container.prepend(str);
+			$(".tweet").first().hide().delay(el*350).slideDown();
+/*			$(".tweet").each(function(index) {
+			    $(this).delay(index * 350).slideDown();
+			});
+			*/
+            
         }
     });
     // Update tweet times...
@@ -70,9 +77,8 @@ function FormatTweets(data) {
         var newTime = relativeTime(TimeForThisCall);
         $this.text(newTime);
     });
-    //  container.jScrollPane();
+//  container.jScrollPane();
 };
-
 function TweetTick() {
     //            alert("TweetTick lastID"+lastID);
     GetMatchingStatuses(buildString);
