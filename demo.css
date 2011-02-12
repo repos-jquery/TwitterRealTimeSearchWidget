@@ -1,5 +1,11 @@
 .highlight { background-color: yellow }
 
+.big {
+	font-size: 1.5em;
+	margin: 0.83em 0px;
+	font-weight: bold;
+}
+
 button {
     display: inline-block;
     outline: none;

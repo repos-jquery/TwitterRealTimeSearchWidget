@@ -19,6 +19,13 @@
 
 			$(document).ready(function()
 			{
+				$("input").focus(function(srcc)
+				 {
+				    if ($(this).val() == 'SXSW')
+				    {
+				        $(this).val("");
+				    }
+				});
 				one('','SXSW');
 			});
 		//]]>
@@ -40,12 +47,21 @@
 				Modified version of tweet ticker to filter the stream of real time tweets
 			</div>
 			<div id="main">
-				<button onclick="one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">
-				<h1>
-					Press Me
-				</h1></button>
-				<div>
-					from twitter handle (blank searches full stream)<input id="twitter_name" type="text" value="" />search key<input id="key_name" value="SXSW" />
+				<div class="big">
+					<form action="javascript:one($('#twitter_name').val(),$('#key_name').val());">
+				    <div>
+						from twitter handle <input id="twitter_name" type="text" value="" />  (blank searches full stream)<br/>
+						search key <input id="key_name" value="SXSW" />
+						<button onclick="one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">
+							<span class="big">Press Me</span>
+						</button>
+				    </div>
+				  </form>
+					<script>
+				   $("form").submit(function() {
+				        return true;
+				    });					
+					</script>
 				</div><!-- output log add if you want back in -->
 				<div id="info-console" style="display:block;font-size:12px;">
 					output log
