@@ -9,24 +9,26 @@
 		<link rel="stylesheet" type="text/css" href="demo.css" />
 		
 		
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js">
-</script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 		<script type="text/javascript" src="jquery.ba-replacetext.js"></script>		
 
-		<script type="text/javascript" src="script.js">
-</script>
+		<script type="text/javascript" src="script.js"></script>
 		<script type="text/javascript">
 
 			$(document).ready(function()
 			{
-				$("input").focus(function(srcc)
+				var skey = 'bacon';
+				if (urlParams['q']) skey = urlParams['q'];
+				$("#key_name").val(skey); 
+				
+				$("#key_name").focus(function(srcc)
 				 {
-				    if ($(this).val() == 'SXSW')
+				    if ($(this).val() == skey)
 				    {
 				        $(this).val("");
 				    }
 				});
-				one('','SXSW');
+				one('',skey);
 			});
 		//]]>
 		</script>
