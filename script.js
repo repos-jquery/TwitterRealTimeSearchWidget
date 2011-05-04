@@ -20,6 +20,14 @@ var urlParams = {};
 
 
 function one(user,key) {
+    if (tweetUsers.length) {
+        if (tweetUsers[0] !== user) {
+            $('#tweet-container').html('');
+        }
+    }
+    if (last_key !== key) {
+        $('#tweet-container').html('');
+    }
 	last_key = key;
 	lastID = 0;
 	clearTimeout(time_out_id);
