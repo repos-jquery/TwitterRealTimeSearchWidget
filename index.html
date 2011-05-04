@@ -19,8 +19,11 @@
 			{
 				var skey = 'bacon';
 				var user = '';
+				if (urlParams['u']) {
+				    user = urlParams['u'];
+				    skey = '';
+				}
 				if (urlParams['q']) skey = urlParams['q'];
-				if (urlParams['u']) user = urlParams['u'];
 				$("#key_name").val(skey); 
 				
 				$("#key_name").focus(function(srcc)
