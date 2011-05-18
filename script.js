@@ -5,7 +5,7 @@ var tweetlist = [];
 var last_key;
 var time_out_id = 0;
 var delta = 5000;
-
+var first_time = true;
 var urlParams = {};
 function getUrlVars()
 {
@@ -90,7 +90,9 @@ function FormatTweets(data) {
                 <div class="txt">' + formatTwitString(this.text) + '</div>\
                 </div>';
             container.prepend(str);
-			$(".tweet").first().hide().delay(el*350).slideDown();
+			if (!first_time) {
+				$(".tweet").first().hide().delay(el*350).slideDown();
+			}
 /*			$(".tweet").each(function(index) {
 			    $(this).delay(index * 350).slideDown();
 			});
@@ -105,6 +107,7 @@ function FormatTweets(data) {
         var newTime = relativeTime(TimeForThisCall);
         $this.text(newTime);
     });
+	if (first_time) first_time = false;
 //  container.jScrollPane();
 };
 function TweetTick() {

@@ -10,7 +10,6 @@
 		
 		
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-		<script type="text/javascript" src="jquery.ba-replacetext.js"></script>		
 
 		<script type="text/javascript" src="script.js"></script>
 		<script type="text/javascript">
@@ -19,11 +18,13 @@
 			{
 				var skey = 'bacon';
 				var user = '';
-				if (urlParams['u']) {
-				    user = urlParams['u'];
-				    skey = '';
+				if (urlParams) {
+					if (urlParams['u']) {
+					    user = urlParams['u'];
+					    skey = '';
+					}
+					if (urlParams['q']) skey = urlParams['q'];
 				}
-				if (urlParams['q']) skey = urlParams['q'];
 				$("#key_name").val(skey); 
 				$("#twitter_name").val(user);
 				
@@ -55,24 +56,26 @@
 				Modified version of tweet ticker to filter the stream of real time tweets
 			</div>
 			<div id="main">
-				<div class="big">
-					<form action="javascript:one($('#twitter_name').val(),$('#key_name').val());">
-				    <div>
-						from twitter handle <input id="twitter_name" type="text" value="" />  (blank searches full stream)<br/>
-						search key <input id="key_name" value="SXSW" />
-						<button onclick="one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">
-							<span class="big">Press Me</span>
-						</button>
-				    </div>
-				  </form>
-					<script>
-				   $("form").submit(function() {
-				        return true;
-				    });					
-					</script>
-				</div><!-- output log add if you want back in -->
-				<div id="info-console" style="display:block;font-size:12px;">
-					output log
+				<div class="before-ticker">
+					<div class="big">
+						<form action="javascript:one($('#twitter_name').val(),$('#key_name').val());">
+					    <div>
+							from twitter handle <input id="twitter_name" type="text" value="" />  (blank searches full stream)<br/>
+							search key <input id="key_name" value="SXSW" />
+							<button onclick="one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">
+								<span class="big">Press Me</span>
+							</button>
+					    </div>
+					  </form>
+						<script>
+					   $("form").submit(function() {
+					        return true;
+					    });					
+						</script>
+					</div><!-- output log add if you want back in -->
+					<div id="info-console" style="display:block;font-size:12px;">
+						output log
+					</div>
 				</div>
 				<div id="twitter-ticker">
 					<div id="top-bar">
@@ -80,7 +83,7 @@
 							<img src="img/twitter_64.png" width="64" height="64" alt="Twitter icon" />
 						</div>
 						<a href="#datweets" id="datweets"><h2 class="tut">
-							My tweets
+							Tweets
 						</h2></a>
 					</div>
 					<div id="tweet-container"></div>
