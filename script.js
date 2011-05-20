@@ -47,7 +47,7 @@ function one(user,key) {
     if (tweetUsers.length) {
 	    buildString += "+from";
         for (var i = 0; i < tweetUsers.length; i++) {
-            if (i != 0) buildString += '+AND+';
+            if (i != 0) buildString += '+OR+';
             buildString += '%3A' + encodeURI(tweetUsers[i]);
         }
     }
@@ -66,7 +66,7 @@ function show(text, target) {
 
 function GetMatchingStatuses(buildString) {
     var twitterapiurl = "http://search.twitter.com/search.json?since_id=" + lastID + "&q=" + buildString + "&rpp=100&callback=?";
-    show("GetMatchingStatuses apiurl " + twitterapiurl, 'info-console');
+    show("GetMatchingStatuses first "+first_time+" apiurl " + twitterapiurl, 'info-console');
     $.getJSON(twitterapiurl, function(ob) {
         FormatTweets(ob);
     });
@@ -90,7 +90,7 @@ function FormatTweets(data) {
                 <div class="txt">' + formatTwitString(this.text) + '</div>\
                 </div>';
             container.prepend(str);
-			if (!first_time) {
+			if (first_time === false) {
 				$(".tweet").first().hide().delay(el*350).slideDown();
 			}
 /*			$(".tweet").each(function(index) {
