@@ -91,13 +91,8 @@ function FormatTweets(data) {
                 </div>';
             container.prepend(str);
 			if (first_time === false) {
-				$(".tweet").first().hide().delay(el*350).slideDown();
-			}
-/*			$(".tweet").each(function(index) {
-			    $(this).delay(index * 350).slideDown();
-			});
-			*/
-            
+				$(".tweet").first().hide().delay((el+1)*350).slideDown();
+			}            
         }
     });
     // Update tweet times...
