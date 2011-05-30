@@ -27,6 +27,11 @@ function getUrlVars()
 })();
 
 
+function new_one(user,key) {
+	first_time = true;
+	one(user,key);
+}
+
 function one(user,key) {
     if (tweetUsers.length) {
         if (tweetUsers[0] !== user) {

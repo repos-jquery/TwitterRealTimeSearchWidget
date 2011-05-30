@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>currentDocument</key>
-	<string>index.html</string>
+	<string>script.js</string>
 	<key>documents</key>
 	<array>
 		<dict>
@@ -49,7 +49,7 @@
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>30</integer>
+			<integer>56</integer>
 			<key>selectFrom</key>
 			<dict>
 				<key>column</key>
@@ -70,14 +70,14 @@
 			<key>caret</key>
 			<dict>
 				<key>column</key>
-				<integer>0</integer>
+				<integer>36</integer>
 				<key>line</key>
-				<integer>21</integer>
+				<integer>109</integer>
 			</dict>
 			<key>firstVisibleColumn</key>
 			<integer>0</integer>
 			<key>firstVisibleLine</key>
-			<integer>5</integer>
+			<integer>66</integer>
 		</dict>
 	</dict>
 	<key>openDocuments</key>
@@ -89,6 +89,6 @@
 	<key>showFileHierarchyDrawer</key>
 	<true/>
 	<key>windowFrame</key>
-	<string>{{273, 168}, {982, 849}}</string>
+	<string>{{1260, 159}, {982, 849}}</string>
 </dict>
 </plist>
