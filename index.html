@@ -1,43 +1,53 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>
-			victusfate/TwitterRealTimeSearchWidget @ GitHub
-		</title>
-		<link rel="stylesheet" type="text/css" href="demo.css" />
-		
-		
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+<!DOCTYPE html> 
+<html> 
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-		<script type="text/javascript" src="script.js"></script>
-		<script type="text/javascript">
-
-			$(document).ready(function()
-			{
-				var skey = 'bacon';
-				var user = '';
-				if (urlParams) {
-					if (urlParams['u']) {
-					    user = urlParams['u'];
-					    skey = '';
-					}
-					if (urlParams['q']) skey = urlParams['q'];
-				}
-				$("#key_name").val(skey); 
-				$("#twitter_name").val(user);
+        <title>Twitter Realtime Search Widget</title>
+        <link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script> 
+        <script>
+            !window.jQuery && document.write('<script src="scripts/jquery-1.6.1.min.js"><\/script>');
+        </script>
+        <script type='text/javascript' src="http://jashkenas.github.com/coffee-script/extras/coffee-script.js"></script>  
+        <script>
+            !window.CoffeeScript && document.write('<script src="scripts/coffee-script.js"><\/script>');
+        </script>
+<!--		<script type="text/javascript" src="scripts/test_compiled.js"></script> -->
+		<script type="text/coffeescript" src="scripts/script.coffee"></script> 
+		<script type="text/coffeescript">
+			$ ->
+				b1 = new TRSW "#tweet-container1"
+				window.b1 = b1
+				b2 = new TRSW "#tweet-container2"
+				window.b2 = b2
+				b3 = new TRSW "#tweet-container3"
+				window.b3 = b3
 				
-				$("#key_name").focus(function(srcc)
-				 {
-				    if ($(this).val() == skey)
-				    {
-				        $(this).val("");
-				    }
-				});
-				one(user,skey);
-			});
-		//]]>
+				skey = 'occupywallstreet'
+				window.skey = skey
+				user = ''
+				window.user = user
+#				console.log "1 in doc ready skey = (#{window.skey}), user = (#{window.user})"
+				
+				urlParams = window.getUrlVars()
+				window.urlParams = urlParams;
+				
+				if window.urlParams 
+					if window.urlParams['u']
+						window.user = window.urlParams['u']
+						window.skey = ''
+					window.skey = window.urlParams['q'] if window.urlParams['q']
+#					console.log "checking urlParams['q'] #{window.urlParams['q']}"
+#				console.log "2 in doc ready skey = (#{window.skey}), user = (#{window.user})"
+
+				$("#key_name").val window.skey 
+				$("#twitter_name").val window.user
+
+				$("#key_name").focus ->
+					$(this).val ""
+#				console.log "3 in doc ready skey = (#{window.skey}), user = (#{window.user})"			
+				love_and_hate(window.user,window.skey,b1,b2,b3)
 		</script>
 
 	</head>
@@ -46,32 +56,6 @@
 			<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 		</p>
 		<div id="container">
-				<div id="twitter-ticker">
-					<div id="top-bar">
-						<div class="small">
-							<form action="javascript:new_one($('#twitter_name').val(),$('#key_name').val());">
-							    <div style="float:right; margin: -10px 10px 0px 0px;">
-									<br/>
-									from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="SXSW" />
-									<button onclick="new_one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">submit</button>
-							    </div>
-						  	</form>
-							<script>
-						   $("form").submit(function() {
-						        return true;
-						    });					
-							</script>
-						</div><!-- output log add if you want back in -->
-						
-						<div id="twitIcon">
-							<img src="img/twitter_64.png" width="64" height="64" alt="Twitter icon" />
-						</div>
-						<a href="#datweets" id="datweets"><h2 class="tut">
-							Tweets
-						</h2></a>
-					</div>
-					<div id="tweet-container"></div>
-				</div>
 				<div class="download">
 					<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png" /></a> <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png" /></a>
 				</div>
@@ -79,61 +63,47 @@
 					<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget">TwitterRealTimeSearchWidget</a> <span class="small">by <a href="http://github.com/victusfate">victusfate</a></span>
 				</h1>
 				<div class="description">
-					Modified version of tweet ticker to filter the stream of real time tweets
+					Coffeescript widget to filter the stream of real time tweets
 				</div>
+<!--				
 				<div id="main">
 					<div class="before-ticker">
-	<!--					<div class="big">
-							<form action="javascript:new_one($('#twitter_name').val(),$('#key_name').val());">
-						    <div>
-								from twitter handle <input id="twitter_name" type="text" value="" />  (blank searches full stream)<br/>
-								search key <input id="key_name" value="SXSW" />
-								<button onclick="new_one($('#twitter_name').val(),$('#key_name').val());" type="submit" class="mygrad">
-									<span class="big">Press Me</span>
-								</button>
-						    </div>
-						  </form>
-							<script>
-						   $("form").submit(function() {
-						        return true;
-						    });					
-							</script>
-						</div>
-	-->					
 						<div id="info-console" style="display:block;font-size:12px;">
 							output log
 						</div>
 					</div>
-				
-			</div>
-			<h2>
-				Authors
-			</h2>
-			<p>
-				Mark Essel (messel@gmail.com)<br />
-				<br />
-			</p>
-			<h2>
-				Contact
-			</h2>
-			<p>
-				Mark Essel (messel@gmail.com)<br />
-			</p>
-			<h2>
-				Download
-			</h2>
-			<p>
-				You can download this project in either <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/zipball/master">zip</a> or <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/tarball/master">tar</a> formats.
-			</p>
-			<p>
-				You can also clone the project with <a href="http://git-scm.com">Git</a> by running:
-			</p>
-			<pre>
-$ git clone git://github.com/victusfate/TwitterRealTimeSearchWidget
-</pre>
-			<div class="footer">
-				get the source code on GitHub : <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget">victusfate/TwitterRealTimeSearchWidget</a>
-			</div>
-		</div>
-	</body>
+				</div>	
+-->				
+				<div id="twitter-ticker">
+					<div id="top-bar">
+						<div class="small">
+							<form action="javascript:window.love_and_hate($('#twitter_name').val(),$('#key_name').val(),window.b1,window.b2,window.b3);">
+							    <div style="float:right; margin: -10px 10px 0px 0px;">
+									<br/>
+									from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="occupywallstreet" />
+									<button onclick="window.love_and_hate($('#twitter_name').val(),$('#key_name').val(),window.b1,window.b2,window.b3);" type="submit" class="mygrad">submit</button>
+							    </div>
+						  	</form>
+							<script type="text/javascript">
+						   $("form").submit(function() {
+						        return true;
+						    });					
+							</script>
+						</div><!-- output log add if you want back in -->
+
+						<div id="twitIcon">
+							<img src="img/twitter_64.png" width="64" height="64" alt="Twitter icon" />
+						</div>
+					</div>
+					<div>
+						<div id="ltitle" class="left redbox"></div>
+						<div id="ntitle" class="middle greybox"></div>
+						<div id="htitle" class="right bluebox"></div>
+						<br style="font-size:1.5em;"/>
+						<div id="tweet-container1" class="left redbox"></div>
+						<div id="tweet-container2" class="middle greybox"></div>
+						<div id="tweet-container3" class="right bluebox"></div>
+					</div>
+				</div>
+</body>
 </html>
