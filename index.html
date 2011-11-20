@@ -28,7 +28,7 @@
 				window.skey = skey
 				user = ''
 				window.user = user
-#				console.log "1 in doc ready skey = (#{window.skey}), user = (#{window.user})"
+#				console.log "1 in doc ready skey = '#{window.skey}', user = '#{window.user}'"
 				
 				urlParams = window.getUrlVars()
 				window.urlParams = urlParams;
@@ -47,7 +47,7 @@
 				$("#key_name").focus ->
 					$(this).val ""
 #				console.log "3 in doc ready skey = (#{window.skey}), user = (#{window.user})"			
-				love_and_hate(window.user,window.skey,b1,b2,b3)
+				window.love_and_hate(window.user,window.skey,b1,b2,b3)
 		</script>
 
 	</head>
@@ -56,54 +56,63 @@
 			<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
 		</p>
 		<div id="container">
-				<div class="download">
-					<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png" /></a> <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png" /></a>
-				</div>
-				<h1>
-					<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget">TwitterRealTimeSearchWidget</a> <span class="small">by <a href="http://github.com/victusfate">victusfate</a></span>
-				</h1>
-				<div class="description">
-					Coffeescript widget to filter the stream of real time tweets
-				</div>
+			<div class="download">
+				<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/zipball/master"><img border="0" width="90" src="http://github.com/images/modules/download/zip.png" /></a> <a href="http://github.com/victusfate/TwitterRealTimeSearchWidget/tarball/master"><img border="0" width="90" src="http://github.com/images/modules/download/tar.png" /></a>
+			</div>
+			<h1>
+				<a href="http://github.com/victusfate/TwitterRealTimeSearchWidget">TwitterRealTimeSearchWidget</a> <span class="small">by <a href="http://github.com/victusfate">victusfate</a></span>
+			</h1>
+			<div class="description">
+				Coffeescript widget to filter the stream of real time tweets
+			</div>
 <!--				
-				<div id="main">
-					<div class="before-ticker">
-						<div id="info-console" style="display:block;font-size:12px;">
-							output log
-						</div>
-					</div>
-				</div>	
--->				
-				<div id="twitter-ticker">
-					<div id="top-bar">
-						<div class="small">
-							<form action="javascript:window.love_and_hate($('#twitter_name').val(),$('#key_name').val(),window.b1,window.b2,window.b3);">
-							    <div style="float:right; margin: -10px 10px 0px 0px;">
-									<br/>
-									from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="occupywallstreet" />
-									<button onclick="window.love_and_hate($('#twitter_name').val(),$('#key_name').val(),window.b1,window.b2,window.b3);" type="submit" class="mygrad">submit</button>
-							    </div>
-						  	</form>
-							<script type="text/javascript">
-						   $("form").submit(function() {
-						        return true;
-						    });					
-							</script>
-						</div><!-- output log add if you want back in -->
-
-						<div id="twitIcon">
-							<img src="img/twitter_64.png" width="64" height="64" alt="Twitter icon" />
-						</div>
-					</div>
-					<div>
-						<div id="ltitle" class="left redbox"></div>
-						<div id="ntitle" class="middle greybox"></div>
-						<div id="htitle" class="right bluebox"></div>
-						<br style="font-size:1.5em;"/>
-						<div id="tweet-container1" class="left redbox"></div>
-						<div id="tweet-container2" class="middle greybox"></div>
-						<div id="tweet-container3" class="right bluebox"></div>
+			<div id="main">
+				<div class="before-ticker">
+					<div id="info-console" style="display:block;font-size:12px;">
+						output log
 					</div>
 				</div>
+			</div>	
+-->				
+			<div id="twitter-ticker">
+				<div id="top-bar">
+					<div class="small">
+						<form id="search" onsubmit="return updateform();">  
+							<div style="float:right; margin: -10px 10px 0px 0px;">
+								<br/>
+								from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="occupywallstreet" />
+								<button onclick="javascript:updateform();" type="submit" class="mygrad">submit</button>
+						    </div>
+						</form>
+						<script>
+/*						$("form#search").submit(function() {
+							//console.log("twitter_name user '" + $('#twitter_name').val() + "' key '" + $('#key_name').val() + "', window.user '" + window.user + "' window.skey '" + window.skey + "'");
+							return true;
+						});					
+						*/
+						function updateform() {
+							//console.log("twitter_name user '" + $('#twitter_name').val() + "' key '" + $('#key_name').val() + "', window.user '" + window.user + "' window.skey '" + window.skey + "'");
+							window.love_and_hate($('#twitter_name').val(),$('#key_name').val(),window.b1,window.b2,window.b3); 	
+							return false;
+						}					
+						</script>
+						
+					</div><!-- output log add if you want back in -->
+
+					<div id="twitIcon">
+						<img src="img/twitter_64.png" width="64" height="64" alt="Twitter icon" />
+					</div>
+				</div>
+				<div>
+					<div id="ltitle" class="left redbox"></div>
+					<div id="ntitle" class="middle greybox"></div>
+					<div id="htitle" class="right bluebox"></div>
+					<br style="font-size:1.5em;"/>
+					<div id="tweet-container1" class="left redbox"></div>
+					<div id="tweet-container2" class="middle greybox"></div>
+					<div id="tweet-container3" class="right bluebox"></div>
+				</div>
+			</div>
+		</div>		
 </body>
 </html>

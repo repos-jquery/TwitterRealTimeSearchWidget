@@ -142,7 +142,7 @@ getUrlVars = ->
 window.getUrlVars = getUrlVars
 
 love_and_hate = (user,skey,love,neutral,hate) ->
-#	console.log "::love_and_hate call user (#{user}), skey (#{skey})"
+	console.log "::love_and_hate call user (#{user}), skey (#{skey})"
 	[love.first_time,neutral.first_time,hate.first_time] = [true,true,true]
 	love.one user,"loves "+skey
 	neutral.one user,skey
@@ -154,7 +154,7 @@ love_and_hate = (user,skey,love,neutral,hate) ->
 	$("#ntitle").prepend "<h2 style=\"text-align:center;\">#{skey}</h2>"
 	$("#htitle").prepend "<h2 style=\"text-align:center;\">Hates #{skey}</h2>"
 #	console.log "::love_and_hate finished"
-	null
+	false
 window.love_and_hate = love_and_hate
 
 
