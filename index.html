@@ -24,8 +24,9 @@
 				b3 = new TRSW "#tweet-container3"
 				window.b3 = b3
 				
-				skey = 'occupywallstreet'
+				skey = 'twitter'
 				window.skey = skey
+				$('#key_name').val window.skey
 				user = ''
 				window.user = user
 #				console.log "1 in doc ready skey = '#{window.skey}', user = '#{window.user}'"
@@ -80,7 +81,7 @@
 						<form id="search" onsubmit="return updateform();">  
 							<div style="float:right; margin: -10px 10px 0px 0px;">
 								<br/>
-								from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="occupywallstreet" />
+								from (blank is all users) <input id="twitter_name" type="text" value="" /> Search Key <input id="key_name" value="" />
 								<button onclick="javascript:updateform();" type="submit" class="mygrad">submit</button>
 						    </div>
 						</form>
