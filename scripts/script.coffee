@@ -55,6 +55,7 @@ class TRSW
 		dr = $(data.results).sort((a, b) ->
 			a.id - b.id
 		)
+		
 		context_par = this;
 		relTimeFunc = @relativeTime
 		formStrFunc = @formatTwitString
@@ -83,6 +84,12 @@ class TRSW
 				container.prepend str
 				newTweets = true
 		@lastID = lastID if lastID
+		container.find(".tweet").each (i,el) ->
+		    $(this).remove() if i > 50
+		        
+		    
+		
+		
 		container.find("> .tweet").first().hide().slideDown()	if firstTimeIn is false and newTweets
 
 		container.find("> .tweet>.time").each (el) ->

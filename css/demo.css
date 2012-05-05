@@ -231,9 +231,11 @@ body {
 	width: 900px;
 }
 
-.left { position:absolute; margin-left: 0px;}
-.middle { position:absolute; margin-left: 280px;}
-.right { position:absolute; margin-left: 560px;}
+.limited_title { height:30px; display:block; }
+.limited { height:6000px; overflow:hidden; display:block; }
+.left { margin-left: 0px; float: left;}
+.middle { margin-left: 0px; float: left;}
+.right { margin-left: 0px; float: left;}
 .center { float: center;}
 .redbox { background-color:#FDCECE; border-color:red; width:280px;}
 .bluebox { background-color:#CEFAFD; border-color:cyan; width:280px;}
